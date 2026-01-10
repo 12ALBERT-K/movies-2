@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Browse Movies - KALIMOVIES</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+  }
+
+  header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d0a1a 100%);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(255, 60, 60, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff3c3c, #ff6b6b);
+    -webkit-background-clips: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 25px;
+    transition: all 0.3s;
+  }
+
+  nav a:hover {
+    background: rgba(255, 60, 60, 0.1);
+    border: 1px solid #ff3c3c;
+  }
+
+  .search-section {
+    padding: 40px 5%;
+    text-align: center;
+  }
+
+  .search-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #fff, #ff3c3c);
+    -webkit-background-clips: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .search-box {
+    max-width: 600px;
+    margin: 0 auto 30px;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 30px;
+    border: 2px solid rgba(255, 60, 60, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .search-box input:focus {
+    outline: none;
+    border-color: #ff3c3c;
+  }
+
+  .filters {
+    padding: 20px 5%;
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .filter-chip {
+    padding: 10px 25px;
+    background: rgba(255, 60, 60, 0.1);
+    border: 2px solid rgba(255, 60, 60, 0.3);
+    border-radius: 25px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .filter-chip:hover, .filter-chip.active {
+    background: #ff3c3c;
+    border-color: #ff3c3c;
+    transform: scale(1.05);
+  }
+
+  .container {
+    padding: 40px 5%;
+  }
+
+  .results-info {
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    color: #888;
+  }
+
+  .movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+  }
+
+  .movie-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #1a1a1a;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  }
+
+  .movie-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 60, 60, 0.4);
+  }
+
+  .movie-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+  }
+
+  .quality-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff3c3c;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  .movie-info {
+    padding: 15px;
+  }
+
+  .movie-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .movie-meta {
+    display: flex;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .genre-badge {
+    background: rgba(255, 60, 60, 0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 768px) {
+    .movies-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .search-section h1 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='index.html'">KALIMOVIES</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="browse.html">Browse</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
+
+<div class="search-section">
+  <h1>Browse Movies</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for movies...">
+  </div>
+</div>
+
+<div class="filters">
+  <div class="filter-chip active" data-genre="all">All</div>
+  <div class="filter-chip" data-genre="Action">Action</div>
+  <div class="filter-chip" data-genre="Comedy">Comedy</div>
+  <div class="filter-chip" data-genre="Drama">Drama</div>
+  <div class="filter-chip" data-genre="Horror">Horror</div>
+  <div class="filter-chip" data-genre="Sci-Fi">Sci-Fi</div>
+  <div class="filter-chip" data-genre="Animation">Animation</div>
+  <div class="filter-chip" data-genre="Family">Family</div>
+</div>
+
+<div class="container">
+  <div class="results-info" id="resultsInfo">Showing all results.</div>
+  <div class="movies-grid" id="moviesGrid"></div>
+</div>
+
+<script src="movies-database.js"></script>
+<script>
+let currentGenre = 'all';
+let currentSearch = '';
+
+const params = new URLSearchParams(window.location.search);
+const urlGenre = params.get('genre');
+const urlSearch = params.get('search');
+
+if (urlGenre) {
+  currentGenre = urlGenre;
+  document.querySelector('.filter-chip.active')?.classList.remove('active');
+  document.querySelector(`[data-genre="${urlGenre}"]`)?.classList.add('active');
+}
+
+if (urlSearch) {
+  currentSearch = urlSearch;
+  document.getElementById('searchInput').value = urlSearch;
+}
+
+function displayMovies() {
+  let filtered = allMovies;
+
+  if (currentGenre !== 'all') {
+    filtered = filtered.filter(m => m.genre === currentGenre);
+  }
+
+  if (currentSearch) {
+    filtered = filtered.filter(m => 
+      m.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+      m.desc.toLowerCase().includes(currentSearch.toLowerCase())
+    );
+  }
+
+  const grid = document.getElementById('moviesGrid');
+  grid.innerHTML = '';
+
+  document.getElementById('resultsInfo').textContent = 
+    `Showing ${filtered.length} movie${filtered.length !== 1 ? 's' : ''}`;
+
+  filtered.forEach(movie => {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.onclick = () => location.href = `movie.html?id=${movie.id}`;
+    card.innerHTML = `
+      <div class="quality-badge">${movie.quality}</div>
+      <img src="${movie.poster}" alt="${movie.title}" class="movie-poster">
+      <div class="movie-info">
+        <div class="movie-title">${movie.title}</div>
+        <div class="movie-meta">
+          <span class="genre-badge">${movie.genre}</span>
+          <span>${movie.year}</span>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    currentGenre = chip.dataset.genre;
+    displayMovies();
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  currentSearch = e.target.value;
+  displayMovies();
+});
+
+displayMovies();
+</script>
+
+</body>
+</html>

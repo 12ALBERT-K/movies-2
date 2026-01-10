@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us - KALIMOVIES</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d0a1a 100%);
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(255, 60, 60, 0.3);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff3c3c, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 5px;
+      border-radius: 25px;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 60, 60, 0.1);
+      border: 1px solid #ff3c3c;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .about-hero {
+      background: linear-gradient(135deg, rgba(255,60,60,0.15), rgba(0,0,0,0.8));
+      border-radius: 20px;
+      padding: 50px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      margin-bottom: 40px;
+    }
+
+    .about-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      background: linear-gradient(45deg, #fff, #ff3c3c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-hero p {
+      color: #ccc;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .about-card {
+      background: #1a1a1a;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 60, 60, 0.15);
+    }
+
+    .about-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 45px rgba(255, 60, 60, 0.3);
+    }
+
+    .about-card h3 {
+      color: #ff3c3c;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .about-card p {
+      color: #ccc;
+      line-height: 1.7;
+    }
+
+    .cta-section {
+      margin-top: 60px;
+      background: rgba(255, 60, 60, 0.08);
+      border: 2px solid rgba(255, 60, 60, 0.25);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: #ff3c3c;
+    }
+
+    .cta-section p {
+      color: #ddd;
+      margin-bottom: 25px;
+      font-size: 1.05rem;
+    }
+
+    .cta-btn {
+      padding: 14px 40px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #ff3c3c, #e23030);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 25px rgba(255, 60, 60, 0.5);
+      transition: all 0.3s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(255, 60, 60, 0.7);
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 25px;
+      text-align: center;
+      color: #777;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .about-hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='index.html'">KALIMOVIES</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="browse.html">Browse</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <section class="about-hero">
+    <h1>About KALIMOVIES</h1>
+    <p>
+      KALIMOVIES is a modern movie streaming platform built for movie lovers.
+      We bring you the latest movies, TV series, and exclusive content
+      with a clean cinematic experience — anytime, anywhere.
+    </p>
+  </section>
+
+  <section class="about-grid">
+    <div class="about-card">
+      <h3>🎬 Our Mission</h3>
+      <p>
+        To provide high-quality entertainment with a smooth, fast,
+        and visually stunning streaming experience for everyone.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <h3>🌍 What We Offer</h3>
+      <p>
+        Movies, TV series, and multiple genres including Action, Horror,
+        Romance, Comedy, Sci-Fi, and more — all in one place.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <h3>⚡ Our Vision</h3>
+      <p>
+        To become a trusted digital cinema platform that blends
+        performance, design, and entertainment together.
+      </p>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Join the KALIMOVIES Experience</h2>
+    <p>
+      Discover movies you love and enjoy entertainment the modern way.
+    </p>
+    <button class="cta-btn" onclick="location.href='index.html'">
+      Start Watching
+    </button>
+  </section>
+
+</div>
+
+<footer>
+  © 2025 KALIMOVIES • All Rights Reserved
+</footer>
+
+</body>
+</html>

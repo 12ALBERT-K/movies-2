@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KALIMOVIES - Watch Movies Online Free</title>
+<meta name="description" content="Watch the latest movies and TV shows online for free. Stream HD movies with subtitles.">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+  }
+
+  header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d0a1a 100%);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(255, 60, 60, 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff3c3c, #ff6b6b);
+    -webkit-background-clips: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  nav a, nav button {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s;
+    background: transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  nav a:hover, nav button:hover {
+    background: rgba(255, 60, 60, 0.1);
+    border-color: #ff3c3c;
+    transform: translateY(-2px);
+  }
+
+  .search-container {
+    position: relative;
+    margin-left: 20px;
+  }
+
+  .search-container input {
+    padding: 10px 40px 10px 15px;
+    border-radius: 25px;
+    border: 2px solid rgba(255, 60, 60, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    width: 250px;
+    transition: all 0.3s;
+  }
+
+  .search-container input:focus {
+    outline: none;
+    border-color: #ff3c3c;
+    width: 300px;
+  }
+
+  .recently-uploaded {
+    padding: 30px 0;
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a0a0a 100%);
+    overflow: hidden;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 0 5%;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    color: #ff3c3c;
+  }
+   .par{
+     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.15rem;        
+    font-weight: 400;
+    line-height: 1.8;          
+    color: #e0e0e0;
+    max-width: 800px;
+    margin-top: 20px;
+    margin-left: 50px;
+   }
+
+
+ 
+
+  .hero {
+    position: relative;
+    height: 70vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+                url('https://image.tmdb.org/t/p/original/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+  }
+
+  .hero-content {
+    max-width: 600px;
+    z-index: 1;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #ddd;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 15px;
+  }
+
+  .btn {
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #ff3c3c, #e23030);
+    color: white;
+    box-shadow: 0 5px 20px rgba(255, 60, 60, 0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 60, 60, 0.6);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #fff;
+  }
+
+  .categories {
+    padding: 30px 5%;
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .categories::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .categories::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  .categories::-webkit-scrollbar-thumb {
+    background: #ff3c3c;
+    border-radius: 10px;
+  }
+
+  .category-chip {
+    padding: 10px 25px;
+    background: rgba(255, 60, 60, 0.1);
+    border: 2px solid rgba(255, 60, 60, 0.3);
+    border-radius: 25px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .category-chip:hover, .category-chip.active {
+    background: #ff3c3c;
+    border-color: #ff3c3c;
+    transform: scale(1.05);
+  }
+
+  .section {
+    padding: 40px 5%;
+  }
+
+  .view-all {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+
+  .view-all:hover {
+    color: #ff3c3c;
+    text-decoration: underline;
+  }
+
+  .movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+  }
+
+  .movie-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #1a1a1a;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  }
+
+  .movie-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 60, 60, 0.4);
+  }
+
+  .movie-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+  }
+
+  .movie-info {
+    padding: 15px;
+  }
+
+  .movie-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .movie-meta {
+    display: flex;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .genre-badge {
+    background: rgba(255, 60, 60, 0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+  }
+
+  .quality-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff3c3c;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  footer {
+    background: #0a0a0a;
+    padding: 40px 5%;
+    border-top: 1px solid rgba(255, 60, 60, 0.2);
+    margin-top: 60px;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+  }
+
+  .footer-section h3 {
+    color: #ff3c3c;
+    margin-bottom: 15px;
+  }
+
+  .footer-section a {
+    display: block;
+    color: #888;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+  }
+
+  .footer-section a:hover {
+    color: #ff3c3c;
+    padding-left: 5px;
+  }
+
+  .copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content h1 { font-size: 2rem; }
+    .movies-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    nav { flex-wrap: wrap; }
+    .search-container { width: 100%; margin: 10px 0; }
+    .search-container input { width: 100%; }
+    .carousel-card { min-width: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">KALIMOVIES</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="browse.html">Browse</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search movies...">
+  </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Avengers: Endgame</h1>
+    <p>After the devastating events of Infinity War, the Avengers assemble once more to reverse Thanos' actions and restore balance to the universe.</p>
+    <div class="hero-buttons">
+      <a href="movie.html?id=40" class="btn btn-primary">Watch Now</a>
+      <a href="movie.html?id=40" class="btn btn-secondary">More Info</a>
+    </div>
+  </div>
+</section>
+<p class="par">Welcome to KalimoMovies, here you can watch all the latest movies and TV shows, dubbed/agasobanuye and also undubbed ones. Enjoy your streaming experience!</p>
+
+<div class="categories">
+  <div class="category-chip active" onclick="filterByCategory('all')">All</div>
+  <div class="category-chip" onclick="filterByCategory('Action')">Action</div>
+  <div class="category-chip" onclick="filterByCategory('Comedy')">Comedy</div>
+  <div class="category-chip" onclick="filterByCategory('Drama')">Drama</div>
+  <div class="category-chip" onclick="filterByCategory('Horror')">Horror</div>
+  <div class="category-chip" onclick="filterByCategory('Sci-Fi')">Sci-Fi</div>
+  <div class="category-chip" onclick="filterByCategory('Animation')">Animation</div>
+  <div class="category-chip" onclick="filterByCategory('Family')">Family</div>
+</div>
+
+<main id="mainContent"></main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>KALIMOVIES</h3>
+      <p>Your destination for the latest movies and TV shows. Stream unlimited entertainment anytime, anywhere.</p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="browse.html">Browse Movies</a>
+      <a href="profile.html">Profile</a>
+    </div>
+    <div class="footer-section">
+      <h3>Categories</h3>
+      <a href="browse.html?genre=Action">Action</a>
+      <a href="browse.html?genre=Comedy">Comedy</a>
+      <a href="browse.html?genre=Drama">Drama</a>
+      <a href="browse.html?genre=Horror">Horror</a>
+    </div>
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <a href="mailto:info@kalimovies.com">info@kalimovies.com</a>
+      <a href="about.html">About Us</a>
+      <a href="policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="https://whatsapp.com/channel/0029VbCGYTcHltYAMShkZP1F">WhatsApp</a>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>&copy; 2025 KALIMOVIES. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="movies-database.js"></script>
+<script>
+
+
+// Group movies by genre
+const genres = {};
+allMovies.forEach(m => {
+  if (!genres[m.genre]) genres[m.genre] = [];
+  genres[m.genre].push(m);
+});
+
+// Display movies
+const main = document.getElementById('mainContent');
+
+Object.keys(genres).forEach(genre => {
+  const section = document.createElement('section');
+  section.className = 'section';
+  
+  const header = document.createElement('div');
+  header.className = 'section-header';
+  header.innerHTML = `
+    <h2 class="section-title">${genre} Movies</h2>
+    <a href="browse.html?genre=${genre}" class="view-all">View All →</a>
+  `;
+  
+  const grid = document.createElement('div');
+  grid.className = 'movies-grid';
+  
+  genres[genre].slice(0, 6).forEach(movie => {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.onclick = () => location.href = `movie.html?id=${movie.id}`;
+    card.innerHTML = `
+      <div class="quality-badge">${movie.quality}</div>
+      <img src="${movie.poster}" alt="${movie.title}" class="movie-poster">
+      <div class="movie-info">
+        <div class="movie-title">${movie.title}</div>
+        <div class="movie-meta">
+          <span class="genre-badge">${movie.genre}</span>
+          <span>${movie.year}</span>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  
+  section.appendChild(header);
+  section.appendChild(grid);
+  main.appendChild(section);
+});
+
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase();
+  if (query.length > 2) {
+    location.href = `browse.html?search=${query}`;
+  }
+});
+
+// Filter by category
+function filterByCategory(category) {
+  if (category === 'all') {
+    location.href = 'browse.html';
+  } else {
+    location.href = `browse.html?genre=${category}`;
+  }
+}
+</script>
+
+</body>
+</html>

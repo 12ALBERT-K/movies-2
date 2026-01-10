@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Profile - KALIMOVIES</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+    header {
+      background: rgba(31, 31, 31, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    header h1 {
+      background: linear-gradient(45deg, #ff3c3c, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    header button {
+      background: linear-gradient(135deg, #ff3c3c, #e23030);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0 5px;
+      font-weight: 600;
+    }
+    header button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 60, 60, 0.4);
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .profile-card {
+      background: linear-gradient(135deg, rgba(255, 60, 60, 0.1), rgba(138, 43, 226, 0.1));
+      border-radius: 30px;
+      padding: 40px;
+      text-align: center;
+      border: 1px solid rgba(255, 60, 60, 0.2);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .avatar-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #ff3c3c;
+      box-shadow: 0 10px 30px rgba(255, 60, 60, 0.5);
+    }
+    .avatar-label {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: linear-gradient(135deg, #ff3c3c, #e23030);
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      font-size: 1.2rem;
+    }
+    .avatar-label:hover {
+      transform: scale(1.1);
+    }
+    .avatar-input {
+      display: none;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #fff, #ff3c3c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      color: #aaa;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #aaa;
+      font-weight: 500;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 15px 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(255, 60, 60, 0.2);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #ff3c3c;
+      box-shadow: 0 0 20px rgba(255, 60, 60, 0.2);
+    }
+    .btn {
+      background: linear-gradient(135deg, #ff3c3c, #e23030);
+      border: none;
+      color: white;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(255, 60, 60, 0.3);
+      width: 100%;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(255, 60, 60, 0.5);
+    }
+    .btn-logout {
+      background: rgba(68, 68, 68, 0.6);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    .btn-logout:hover {
+      background: rgba(85, 85, 85, 0.8);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 onclick="window.location.href='index.html'">KALIMOVIES</h1>
+    <div>
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="window.location.href='browse.html'">Browse</button>
+    </div>
+    <div id="profileArea"></div>
+  </header>
+
+  <div class="container">
+    <div class="profile-card">
+      <div class="avatar-container">
+        <img src="https://via.placeholder.com/150/ff3c3c/ffffff?text=U" alt="Avatar" class="avatar" id="avatarPreview">
+        <label class="avatar-label" for="avatarInput">📷</label>
+        <input type="file" id="avatarInput" class="avatar-input" accept="image/*">
+      </div>
+      
+      <h2 id="usernameDisplay">Guest User</h2>
+      <p id="emailDisplay">No email set</p>
+
+      <div class="form-group">
+        <label for="usernameInput">Username</label>
+        <input type="text" id="usernameInput" placeholder="Enter your username">
+      </div>
+      
+      <div class="form-group">
+        <label for="emailInput">Email Address</label>
+        <input type="email" id="emailInput" placeholder="Enter your email">
+      </div>
+
+      <button class="btn" id="saveBtn">Save Profile</button>
+      <button class="btn btn-logout" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    function loadProfileHeader() {
+      const profileArea = document.getElementById('profileArea');
+      const savedName = localStorage.getItem('username');
+      const savedAvatar = localStorage.getItem('avatar');
+
+      if (savedName) {
+        const avatarSrc = savedAvatar || 'https://via.placeholder.com/40/ff3c3c/ffffff?text=' + savedName.charAt(0).toUpperCase();
+        profileArea.innerHTML = `
+          <img src="${avatarSrc}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ff3c3c;cursor:pointer;" onclick="window.location.href='profile.html'">
+          <span style="margin-left:10px;cursor:pointer;font-weight:600;" onclick="window.location.href='profile.html'">${savedName}</span>
+        `;
+      } else {
+        profileArea.innerHTML = `<button onclick="window.location.href='profile.html'">Profile</button>`;
+      }
+    }
+
+    function loadProfile() {
+      const savedName = localStorage.getItem('username');
+      const savedEmail = localStorage.getItem('email');
+      const savedAvatar = localStorage.getItem('avatar');
+
+      if (savedName) {
+        document.getElementById('usernameDisplay').textContent = savedName;
+        document.getElementById('usernameInput').value = savedName;
+      }
+      
+      if (savedEmail) {
+        document.getElementById('emailDisplay').textContent = savedEmail;
+        document.getElementById('emailInput').value = savedEmail;
+      }
+      
+      if (savedAvatar) {
+        document.getElementById('avatarPreview').src = savedAvatar;
+      }
+    }
+
+    document.getElementById('avatarInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('avatarPreview').src = e.target.result;
+          localStorage.setItem('avatar', e.target.result);
+          loadProfileHeader();
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('saveBtn').addEventListener('click', function() {
+      const username = document.getElementById('usernameInput').value.trim();
+      const email = document.getElementById('emailInput').value.trim();
+
+      if (!username) {
+        alert("Please enter a username");
+        return;
+      }
+
+      localStorage.setItem('username', username);
+      
+      if (email) {
+        localStorage.setItem('email', email);
+      }
+
+      if (!localStorage.getItem('avatar')) {
+        localStorage.setItem('avatar', 'https://via.placeholder.com/150/ff3c3c/ffffff?text=' + username.charAt(0).toUpperCase());
+      }
+
+      alert("Profile saved successfully!");
+      loadProfile();
+      loadProfileHeader();
+      window.location.href = 'index.html';
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      if (confirm("Are you sure you want to logout?")) {
+        localStorage.clear();
+        alert("You have been logged out.");
+        window.location.href = 'index.html';
+      }
+    });
+
+    loadProfileHeader();
+    loadProfile();
+  </script>
+</body>
+</html>
